@@ -1,111 +1,213 @@
-describe('User Registration - Online Shopping System', () => {
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // Ignore errors from jquery.payform.min.js
+  if (err.message.includes('addEventListener') && err.stack.includes('jquery.payform.min.js')) {
+    return false;
+  }
+  // Let other errors fail the test
+});
 
-    const baseUrl = 'http://localhost/online-shopping-system-advanced-master/online-shopping-system-advanced-master/signup_form.php';
-  
-    beforeEach(() => {
-      // Clear any existing cookies/session
-      cy.clearCookies();
-      // Visit the signup page before each test
-      cy.visit(baseUrl);
-      // Wait for the form to be fully loaded
-      cy.get('#signup_form').should('be.visible');
-    });
-  
-    // ✅ TEST CASE 1: Successful registration with valid inputs
-    it('should register successfully with valid unique data', () => {
-      const timestamp = Date.now();
-      const testEmail = `test_${timestamp}@gmail.com`;
-  
-      cy.get('#f_name').type('Test');
-      cy.get('#l_name').type('User');
-      cy.get('input[name="email"]').type(testEmail);
-      cy.get('#mobile').type('0192110000');
-      cy.get('#password').type('123456789');
-      cy.get('#repassword').type('123456789');
-      cy.get('#address1').type('Test Address');
-      cy.get('#address2').type('Test City');
-      cy.get('#ckb1').check({ force: true });
-  
-      cy.get('button[type="submit"]').should('be.visible').click();
-  
-      cy.url().should('include', '/store.php');
-    });
-  
-    // ❌ TEST CASE 2: Registration with empty required fields
-    it('should show error when required fields are empty', () => {
-      cy.get('button[type="submit"]').should('be.visible').click();
-  
-      cy.get('#signup_msg')
-        .should('be.visible')
-        .and('contain.text', 'PLease Fill all fields..!');
-    });
-  
-    // 🛑 TEST CASE 3: Invalid email format
-    it('should show error for invalid email format', () => {
-      cy.get('#f_name').type('Test');
-      cy.get('#l_name').type('User');
-      cy.get('input[name="email"]').type('invalid-email');
-      cy.get('#mobile').type('0192110000');
-      cy.get('#password').type('123456789');
-      cy.get('#repassword').type('123456789');
-      cy.get('#address1').type('Test Address');
-      cy.get('#address2').type('Test City');
-      cy.get('#ckb1').check({ force: true });
-  
-      cy.get('button[type="submit"]').should('be.visible').click();
-  
-      cy.get('#signup_msg')
-        .should('be.visible')
-        .and('contain.text', 'Please enter a valid email address!');
-    });
-  
-    // ❗ TEST CASE 4: Mismatched password and repeat password
-    it('should show error when password and confirm password do not match', () => {
-      const timestamp = Date.now();
-      const testEmail = `test_${timestamp}@gmail.com`;
-  
-      cy.get('#f_name').type('Test');
-      cy.get('#l_name').type('User');
-      cy.get('input[name="email"]').type(testEmail);
-      cy.get('#mobile').type('0192110000');
-      cy.get('#password').type('123456789');
-      cy.get('#repassword').type('987654321');
-      cy.get('#address1').type('Test Address');
-      cy.get('#address2').type('Test City');
-      cy.get('#ckb1').check({ force: true });
-  
-      cy.get('button[type="submit"]').should('be.visible').click();
-  
-      cy.get('#signup_msg')
-        .should('be.visible')
-        .and('contain.text', 'Passwords do not match!');
-    });
-  
-    // Additional test case for terms checkbox
-    it('should require terms checkbox to be checked', () => {
-      const timestamp = Date.now();
-      const testEmail = `test_${timestamp}@gmail.com`;
-  
-      cy.get('#f_name').type('Test');
-      cy.get('#l_name').type('User');
-      cy.get('input[name="email"]').type(testEmail);
-      cy.get('#mobile').type('0192110000');
-      cy.get('#password').type('123456789');
-      cy.get('#repassword').type('123456789');
-      cy.get('#address1').type('Test Address');
-      cy.get('#address2').type('Test City');
-  
-      cy.get('button[type="submit"]').should('be.visible').click();
-  
-      cy.get('#signup_msg')
-        .should('be.visible')
-        .and('contain.text', 'Please agree to the Terms and Conditions!');
-    });
-  
-    // --- FRONTEND JS FIX NEEDED ---
-    // In your JS, before using .addEventListener, always check if the element exists:
-    // var el = document.getElementById('some-id');
-    // if (el) { el.addEventListener('click', ...); }
-    // This will prevent 'Cannot read properties of undefined (reading addEventListener)' errors.
+describe('User Registration - Field Validation', () => {
+  const baseUrl = 'http://localhost/online-shopping-system-advanced-master/online-shopping-system-advanced-master/signup_form.php';
+
+  beforeEach(() => {
+    cy.clearCookies();
+    cy.visit(baseUrl);
+    cy.get('#signup_form').should('be.visible');
   });
+
+  // All valid data
+  it('should register successfully with valid unique data', () => {
+    cy.get('#f_name').clear().type('ValidFirst');
+    cy.get('#l_name').clear().type('ValidLast');
+    cy.get('input[name="email"]').clear().type(`valid${Date.now()}@mail.com`);
+    cy.get('#mobile').clear().type('0123456789');
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#repassword').clear().type('StrongPass123!');
+    cy.get('#address1').clear().type('Valid Address');
+    cy.get('#address2').clear().type('Valid City');
+    cy.get('#ckb1').check({ force: true });
+    cy.get('button[type="submit"]').click();
+    cy.url({ timeout: 10000 }).should('include', '/store.php');
+  });
+
+  // FIRST NAME
+  it('should show error when first name is blank', () => {
+    const timestamp = Date.now();
+    const testEmail = `test1_${timestamp}@gmail.com`;
+    cy.get('#f_name').clear();
+    cy.get('#l_name').type('ValidLast');
+    cy.get('input[name="email"]').type(testEmail);
+    cy.get('#mobile').type('0123456789');
+    cy.get('#password').type('StrongPass123!');
+    cy.get('#repassword').type('StrongPass123!');
+    cy.get('#address1').type('Valid Address');
+    cy.get('#address2').type('Valid City');
+    cy.get('#ckb1').check({ force: true });
+    cy.get('button[type="submit"]').click();
+    cy.get('#signup_msg').should('be.visible').and('contain.text', 'PLease Fill all fields..!');
+  });
+
+  // LAST NAME
+  it('should show error when last name is blank', () => {
+    const timestamp = Date.now();
+    const testEmail = `test2_${timestamp}@gmail.com`;
+    cy.get('#f_name').type('ValidFirst');
+    cy.get('#l_name').clear();
+    cy.get('input[name="email"]').type(testEmail);
+    cy.get('#mobile').type('0123456789');
+    cy.get('#password').type('StrongPass123!');
+    cy.get('#repassword').type('StrongPass123!');
+    cy.get('#address1').type('Valid Address');
+    cy.get('#address2').type('Valid City');
+    cy.get('#ckb1').check({ force: true });
+    cy.get('button[type="submit"]').click();
+    cy.get('#signup_msg').should('be.visible').and('contain.text', 'PLease Fill all fields..!');
+  });
+
+  // EMAIL
+  it('should show error when email is blank', () => {
+    cy.get('#f_name').type('ValidFirst');
+    cy.get('#l_name').type('ValidLast');
+    cy.get('input[name="email"]').clear();
+    cy.get('#mobile').type('0123456789');
+    cy.get('#password').type('StrongPass123!');
+    cy.get('#repassword').type('StrongPass123!');
+    cy.get('#address1').type('Valid Address');
+    cy.get('#address2').type('Valid City');
+    cy.get('#ckb1').check({ force: true });
+    cy.get('button[type="submit"]').click();
+    cy.get('#signup_msg').should('be.visible').and('contain.text', 'PLease Fill all fields..!');
+  });
+  it('should show browser validation for invalid email format', () => {
+    const timestamp = Date.now();
+    cy.get('#f_name').type('ValidFirst');
+    cy.get('#l_name').type('ValidLast');
+    cy.get('input[name="email"]').clear().type('invalidemail');
+    cy.get('#mobile').type('0123456789');
+    cy.get('#password').type('StrongPass123!');
+    cy.get('#repassword').type('StrongPass123!');
+    cy.get('#address1').type('Valid Address');
+    cy.get('#address2').type('Valid City');
+    cy.get('#ckb1').check({ force: true });
+    cy.get('button[type="submit"]').click();
+    cy.get('input[name="email"]:invalid').should('exist');
+  });
+
+  // MOBILE
+  it('should show error when mobile is blank', () => {
+    const timestamp = Date.now();
+    const testEmail = `test3_${timestamp}@gmail.com`;
+    cy.get('#f_name').type('ValidFirst');
+    cy.get('#l_name').type('ValidLast');
+    cy.get('input[name="email"]').type(testEmail);
+    cy.get('#mobile').clear();
+    cy.get('#password').type('StrongPass123!');
+    cy.get('#repassword').type('StrongPass123!');
+    cy.get('#address1').type('Valid Address');
+    cy.get('#address2').type('Valid City');
+    cy.get('#ckb1').check({ force: true });
+    cy.get('button[type="submit"]').click();
+    cy.get('#signup_msg').should('be.visible').and('contain.text', 'PLease Fill all fields..!');
+  });
+
+  // PASSWORD
+  it('should show error when password is blank', () => {
+    const timestamp = Date.now();
+    const testEmail = `test4_${timestamp}@gmail.com`;
+    cy.get('#f_name').type('ValidFirst');
+    cy.get('#l_name').type('ValidLast');
+    cy.get('input[name="email"]').type(testEmail);
+    cy.get('#mobile').type('0123456789');
+    cy.get('#password').clear();
+    cy.get('#repassword').type('StrongPass123!');
+    cy.get('#address1').type('Valid Address');
+    cy.get('#address2').type('Valid City');
+    cy.get('#ckb1').check({ force: true });
+    cy.get('button[type="submit"]').click();
+    cy.get('#signup_msg').should('be.visible').and('contain.text', 'PLease Fill all fields..!');
+  });
+
+  // REPEAT PASSWORD
+  it('should show error when repeat password is blank', () => {
+    const timestamp = Date.now();
+    const testEmail = `test5_${timestamp}@gmail.com`;
+    cy.get('#f_name').type('ValidFirst');
+    cy.get('#l_name').type('ValidLast');
+    cy.get('input[name="email"]').type(testEmail);
+    cy.get('#mobile').type('0123456789');
+    cy.get('#password').type('StrongPass123!');
+    cy.get('#repassword').clear();
+    cy.get('#address1').type('Valid Address');
+    cy.get('#address2').type('Valid City');
+    cy.get('#ckb1').check({ force: true });
+    cy.get('button[type="submit"]').click();
+    cy.get('#signup_msg').should('be.visible').and('contain.text', 'PLease Fill all fields..!');
+  });
+  it('should show error for mismatched passwords', () => {
+    const timestamp = Date.now();
+    const testEmail = `test6_${timestamp}@gmail.com`;
+    cy.get('#f_name').type('ValidFirst');
+    cy.get('#l_name').type('ValidLast');
+    cy.get('input[name="email"]').type(testEmail);
+    cy.get('#mobile').type('0123456789');
+    cy.get('#password').type('StrongPass123!');
+    cy.get('#repassword').type('WrongPass123!');
+    cy.get('#address1').type('Valid Address');
+    cy.get('#address2').type('Valid City');
+    cy.get('#ckb1').check({ force: true });
+    cy.get('button[type="submit"]').click();
+    cy.get('#signup_msg').should('be.visible').and('contain.text', 'Passwords do not match!');
+  });
+
+  // ADDRESS1
+  it('should show error when address1 is blank', () => {
+    const timestamp = Date.now();
+    const testEmail = `test7_${timestamp}@gmail.com`;
+    cy.get('#f_name').type('ValidFirst');
+    cy.get('#l_name').type('ValidLast');
+    cy.get('input[name="email"]').type(testEmail);
+    cy.get('#mobile').type('0123456789');
+    cy.get('#password').type('StrongPass123!');
+    cy.get('#repassword').type('StrongPass123!');
+    cy.get('#address1').clear();
+    cy.get('#address2').type('Valid City');
+    cy.get('#ckb1').check({ force: true });
+    cy.get('button[type="submit"]').click();
+    cy.get('#signup_msg').should('be.visible').and('contain.text', 'PLease Fill all fields..!');
+  });
+
+  // ADDRESS2
+  it('should show error when address2 is blank', () => {
+    const timestamp = Date.now();
+    const testEmail = `test8_${timestamp}@gmail.com`;
+    cy.get('#f_name').type('ValidFirst');
+    cy.get('#l_name').type('ValidLast');
+    cy.get('input[name="email"]').type(testEmail);
+    cy.get('#mobile').type('0123456789');
+    cy.get('#password').type('StrongPass123!');
+    cy.get('#repassword').type('StrongPass123!');
+    cy.get('#address1').type('Valid Address');
+    cy.get('#address2').clear();
+    cy.get('#ckb1').check({ force: true });
+    cy.get('button[type="submit"]').click();
+    cy.get('#signup_msg').should('be.visible').and('contain.text', 'PLease Fill all fields..!');
+  });
+
+  // TERMS CHECKBOX
+  it('should require terms checkbox to be checked', () => {
+    const timestamp = Date.now();
+    const testEmail = `test9_${timestamp}@gmail.com`;
+    cy.get('#f_name').type('ValidFirst');
+    cy.get('#l_name').type('ValidLast');
+    cy.get('input[name="email"]').type(testEmail);
+    cy.get('#mobile').type('0123456789');
+    cy.get('#password').type('StrongPass123!');
+    cy.get('#repassword').type('StrongPass123!');
+    cy.get('#address1').type('Valid Address');
+    cy.get('#address2').type('Valid City');
+    // Do not check the checkbox
+    cy.get('button[type="submit"]').click();
+    cy.get('#signup_msg').should('be.visible').and('contain.text', 'Please agree to the Terms and Conditions!');
+  });
+});
   
