@@ -1,0 +1,33 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1747412112918' stop='1747412127377'>
+    <name>Admin Login and Product Addition Test - Online Shopping System</name>
+    <title>Admin Login and Product Addition Test - Online Shopping System</title>
+    <test-cases>
+        <test-case start='1747412112918' status='failed' stop='1747412123127'>
+            <name>should log in successfully and add a new product</name>
+            <title>should log in successfully and add a new product</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timed out retrying after 4000ms: expected 'http://localhost/online-shopping-system-advanced-master/online-shopping-system-advanced-master/admin/admin/add_products.php' to include 'sumit_form.php?success=1'</message>
+                <stack-trace>AssertionError: Timed out retrying after 4000ms: expected 'http://localhost/online-shopping-system-advanced-master/online-shopping-system-advanced-master/admin/admin/add_products.php' to include 'sumit_form.php?success=1'
+                    at Context.eval (webpack:///./cypress/e2e/addproduct.cy.js:68:13)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1747412123186' status='failed' stop='1747412127372'>
+            <name>should show an error if product title is not provided</name>
+            <title>should show an error if product title is not provided</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timed out retrying after 4000ms: Expected to find element: `#product_name`, but never found it.</message>
+                <stack-trace>AssertionError: Timed out retrying after 4000ms: Expected to find element: `#product_name`, but never found it.
+                    at Context.eval (webpack:///./cypress/e2e/addproduct.cy.js:73:5)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

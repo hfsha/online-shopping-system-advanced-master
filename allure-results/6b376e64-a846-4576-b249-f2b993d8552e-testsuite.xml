@@ -1,0 +1,155 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1744954963623' stop='1744954992372'>
+    <name>User Registration - Online Shopping System</name>
+    <title>User Registration - Online Shopping System</title>
+    <test-cases>
+        <test-case start='1744954963623' status='broken' stop='1744954973688'>
+            <name>should register successfully with valid unique data</name>
+            <title>should register successfully with valid unique data</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timed out retrying after 4050ms: `cy.check()` failed because this element is not visible:
+                
+                `&lt;input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">`
+                
+                This element `&lt;input#ckb1.input-checkbox100>` is not visible because it has CSS property: `display: none`
+                
+                Fix this problem, or use `{force: true}` to disable error checking.
+                
+                https://on.cypress.io/element-cannot-be-interacted-with</message>
+                <stack-trace>CypressError: Timed out retrying after 4050ms: `cy.check()` failed because this element is not visible:
+                
+                `&lt;input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">`
+                
+                This element `&lt;input#ckb1.input-checkbox100>` is not visible because it has CSS property: `display: none`
+                
+                Fix this problem, or use `{force: true}` to disable error checking.
+                
+                https://on.cypress.io/element-cannot-be-interacted-with
+                    at runVisibilityCheck (http://localhost/__cypress/runner/cypress_runner.js:147037:58)
+                    at Object.isStrictlyVisible (http://localhost/__cypress/runner/cypress_runner.js:147051:10)
+                    at runAllChecks (http://localhost/__cypress/runner/cypress_runner.js:113449:26)
+                    at retryActionability (http://localhost/__cypress/runner/cypress_runner.js:113517:16)
+                    at tryCatcher (http://localhost/__cypress/runner/cypress_runner.js:1777:23)
+                    at Promise.attempt.Promise.try (http://localhost/__cypress/runner/cypress_runner.js:4285:29)
+                    at whenStable (http://localhost/__cypress/runner/cypress_runner.js:145864:68)
+                    at &lt;unknown> (http://localhost/__cypress/runner/cypress_runner.js:145805:14)
+                    at tryCatcher (http://localhost/__cypress/runner/cypress_runner.js:1777:23)
+                    at Promise._settlePromiseFromHandler (http://localhost/__cypress/runner/cypress_runner.js:1489:31)
+                    at Promise._settlePromise (http://localhost/__cypress/runner/cypress_runner.js:1546:18)
+                    at Promise._settlePromise0 (http://localhost/__cypress/runner/cypress_runner.js:1591:10)
+                    at Promise._settlePromises (http://localhost/__cypress/runner/cypress_runner.js:1671:18)
+                    at Promise._fulfill (http://localhost/__cypress/runner/cypress_runner.js:1615:18)
+                    at &lt;unknown> (http://localhost/__cypress/runner/cypress_runner.js:5420:46)
+                From Your Spec Code:
+                    at Context.eval (webpack:///./cypress/e2e/signup.cy.js:23:22)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1744954973737' status='failed' stop='1744954978256'>
+            <name>should show error when required fields are empty</name>
+            <title>should show error when required fields are empty</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timed out retrying after 4000ms: expected '&lt;div#signup_msg.col-md-8>' to contain text 'required', but the text was '\n\t\t\t\n\t\t\t\t×PLease Fill all fields..!\n\t\t\t\n\t\t'</message>
+                <stack-trace>AssertionError: Timed out retrying after 4000ms: expected '&lt;div#signup_msg.col-md-8>' to contain text 'required', but the text was '\n\t\t\t\n\t\t\t\t×PLease Fill all fields..!\n\t\t\t\n\t\t'
+                    at Context.eval (webpack:///./cypress/e2e/signup.cy.js:39:9)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1744954978330' status='broken' stop='1744954984982'>
+            <name>should show error for invalid email format</name>
+            <title>should show error for invalid email format</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timed out retrying after 4050ms: `cy.check()` failed because this element is not visible:
+                
+                `&lt;input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">`
+                
+                This element `&lt;input#ckb1.input-checkbox100>` is not visible because it has CSS property: `display: none`
+                
+                Fix this problem, or use `{force: true}` to disable error checking.
+                
+                https://on.cypress.io/element-cannot-be-interacted-with</message>
+                <stack-trace>CypressError: Timed out retrying after 4050ms: `cy.check()` failed because this element is not visible:
+                
+                `&lt;input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">`
+                
+                This element `&lt;input#ckb1.input-checkbox100>` is not visible because it has CSS property: `display: none`
+                
+                Fix this problem, or use `{force: true}` to disable error checking.
+                
+                https://on.cypress.io/element-cannot-be-interacted-with
+                    at runVisibilityCheck (http://localhost/__cypress/runner/cypress_runner.js:147037:58)
+                    at Object.isStrictlyVisible (http://localhost/__cypress/runner/cypress_runner.js:147051:10)
+                    at runAllChecks (http://localhost/__cypress/runner/cypress_runner.js:113449:26)
+                    at retryActionability (http://localhost/__cypress/runner/cypress_runner.js:113517:16)
+                    at tryCatcher (http://localhost/__cypress/runner/cypress_runner.js:1777:23)
+                    at Promise.attempt.Promise.try (http://localhost/__cypress/runner/cypress_runner.js:4285:29)
+                    at whenStable (http://localhost/__cypress/runner/cypress_runner.js:145864:68)
+                    at &lt;unknown> (http://localhost/__cypress/runner/cypress_runner.js:145805:14)
+                    at tryCatcher (http://localhost/__cypress/runner/cypress_runner.js:1777:23)
+                    at Promise._settlePromiseFromHandler (http://localhost/__cypress/runner/cypress_runner.js:1489:31)
+                    at Promise._settlePromise (http://localhost/__cypress/runner/cypress_runner.js:1546:18)
+                    at Promise._settlePromise0 (http://localhost/__cypress/runner/cypress_runner.js:1591:10)
+                    at Promise._settlePromises (http://localhost/__cypress/runner/cypress_runner.js:1671:18)
+                    at Promise._fulfill (http://localhost/__cypress/runner/cypress_runner.js:1615:18)
+                    at &lt;unknown> (http://localhost/__cypress/runner/cypress_runner.js:5420:46)
+                From Your Spec Code:
+                    at Context.eval (webpack:///./cypress/e2e/signup.cy.js:52:22)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1744954985072' status='broken' stop='1744954992350'>
+            <name>should show error when password and confirm password do not match</name>
+            <title>should show error when password and confirm password do not match</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timed out retrying after 4050ms: `cy.check()` failed because this element is not visible:
+                
+                `&lt;input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">`
+                
+                This element `&lt;input#ckb1.input-checkbox100>` is not visible because it has CSS property: `display: none`
+                
+                Fix this problem, or use `{force: true}` to disable error checking.
+                
+                https://on.cypress.io/element-cannot-be-interacted-with</message>
+                <stack-trace>CypressError: Timed out retrying after 4050ms: `cy.check()` failed because this element is not visible:
+                
+                `&lt;input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">`
+                
+                This element `&lt;input#ckb1.input-checkbox100>` is not visible because it has CSS property: `display: none`
+                
+                Fix this problem, or use `{force: true}` to disable error checking.
+                
+                https://on.cypress.io/element-cannot-be-interacted-with
+                    at runVisibilityCheck (http://localhost/__cypress/runner/cypress_runner.js:147037:58)
+                    at Object.isStrictlyVisible (http://localhost/__cypress/runner/cypress_runner.js:147051:10)
+                    at runAllChecks (http://localhost/__cypress/runner/cypress_runner.js:113449:26)
+                    at retryActionability (http://localhost/__cypress/runner/cypress_runner.js:113517:16)
+                    at tryCatcher (http://localhost/__cypress/runner/cypress_runner.js:1777:23)
+                    at Promise.attempt.Promise.try (http://localhost/__cypress/runner/cypress_runner.js:4285:29)
+                    at whenStable (http://localhost/__cypress/runner/cypress_runner.js:145864:68)
+                    at &lt;unknown> (http://localhost/__cypress/runner/cypress_runner.js:145805:14)
+                    at tryCatcher (http://localhost/__cypress/runner/cypress_runner.js:1777:23)
+                    at Promise._settlePromiseFromHandler (http://localhost/__cypress/runner/cypress_runner.js:1489:31)
+                    at Promise._settlePromise (http://localhost/__cypress/runner/cypress_runner.js:1546:18)
+                    at Promise._settlePromise0 (http://localhost/__cypress/runner/cypress_runner.js:1591:10)
+                    at Promise._settlePromises (http://localhost/__cypress/runner/cypress_runner.js:1671:18)
+                    at Promise._fulfill (http://localhost/__cypress/runner/cypress_runner.js:1615:18)
+                    at &lt;unknown> (http://localhost/__cypress/runner/cypress_runner.js:5420:46)
+                From Your Spec Code:
+                    at Context.eval (webpack:///./cypress/e2e/signup.cy.js:74:22)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

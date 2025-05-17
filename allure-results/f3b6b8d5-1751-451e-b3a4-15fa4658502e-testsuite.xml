@@ -1,0 +1,53 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1744938102476' stop='1744938119731'>
+    <name>Admin Login Functionality - Online Shopping System</name>
+    <title>Admin Login Functionality - Online Shopping System</title>
+    <test-cases>
+        <test-case start='1744938102476' status='failed' stop='1744938109305'>
+            <name>should login successfully with valid admin credentials</name>
+            <title>should login successfully with valid admin credentials</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timed out retrying after 4000ms: expected 'http://localhost/online-shopping-system-advanced-master/online-shopping-system-advanced-master/admin/login.php' to include 'index.php'</message>
+                <stack-trace>AssertionError: Timed out retrying after 4000ms: expected 'http://localhost/online-shopping-system-advanced-master/online-shopping-system-advanced-master/admin/login.php' to include 'index.php'
+                    at Context.eval (webpack:///./cypress/e2e/login.cy.js:18:13)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1744938109346' status='broken' stop='1744938114357'>
+            <name>should show error with invalid credentials</name>
+            <title>should show error with invalid credentials</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>ENOSPC: no space left on device, open 'C:\xampp\htdocs\online-shopping-system-advanced-master\cypress\screenshots\login.cy.js\Admin Login Functionality - Online Shopping System -- should show error with invalid credentials (failed).png'</message>
+                <stack-trace>Error: ENOSPC: no space left on device, open 'C:\xampp\htdocs\online-shopping-system-advanced-master\cypress\screenshots\login.cy.js\Admin Login Functionality - Online Shopping System -- should show error with invalid credentials (failed).png'</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1744938114370' status='passed' stop='1744938114856'>
+            <name>should display validation errors when fields are empty</name>
+            <title>should display validation errors when fields are empty</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1744938114865' status='failed' stop='1744938119731'>
+            <name>should prevent login with SQL injection attempt</name>
+            <title>should prevent login with SQL injection attempt</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timed out retrying after 4000ms: expected '&lt;h4#e_msg>' to contain text 'Invalid', but the text was '  \n  \t  \t  Wrong username/password combination\n  \t  \n'</message>
+                <stack-trace>AssertionError: Timed out retrying after 4000ms: expected '&lt;h4#e_msg>' to contain text 'Invalid', but the text was '  \n  \t  \t  Wrong username/password combination\n  \t  \n'
+                    at Context.eval (webpack:///./cypress/e2e/login.cy.js:56:7)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

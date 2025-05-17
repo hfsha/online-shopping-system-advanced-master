@@ -1,0 +1,47 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1747412131102' stop='1747412136278'>
+    <name>Admin Login Functionality - Online Shopping System</name>
+    <title>Admin Login Functionality - Online Shopping System</title>
+    <test-cases>
+        <test-case start='1747412131102' status='passed' stop='1747412133528'>
+            <name>should log in successfully with valid email and password</name>
+            <title>should log in successfully with valid email and password</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1747412133547' status='passed' stop='1747412134411'>
+            <name>should display error for invalid email or password</name>
+            <title>should display error for invalid email or password</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1747412134428' status='passed' stop='1747412134607'>
+            <name>should not allow login with empty email and password</name>
+            <title>should not allow login with empty email and password</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1747412134620' status='passed' stop='1747412135392'>
+            <name>should block SQL injection attempts in email and password</name>
+            <title>should block SQL injection attempts in email and password</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1747412135404' status='passed' stop='1747412136278'>
+            <name>should reject credentials with surrounding whitespaces if not trimmed</name>
+            <title>should reject credentials with surrounding whitespaces if not trimmed</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

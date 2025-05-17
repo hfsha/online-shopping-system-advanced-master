@@ -1,0 +1,28 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1747412128885' stop='1747412129133'>
+    <name>Add Item to Cart Test</name>
+    <title>Add Item to Cart Test</title>
+    <test-cases>
+        <test-case start='1747412128885' status='broken' stop='1747412129123'>
+            <name>should add an item to the cart successfully</name>
+            <title>should add an item to the cart successfully</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Add to Cart button not found using known class names</message>
+                <stack-trace>Error: Add to Cart button not found using known class names
+                    at Context.eval (webpack:///./cypress/e2e/addtocart.cy.js:31:14)
+                    at runnable.fn (http://localhost:51275/__cypress/runner/cypress_runner.js:140458:19)
+                    at callFn (http://localhost:51275/__cypress/runner/cypress_runner.js:159536:21)
+                    at Runnable.run (http://localhost:51275/__cypress/runner/cypress_runner.js:159523:7)
+                    at &lt;unknown> (http://localhost:51275/__cypress/runner/cypress_runner.js:165595:30)
+                    at PassThroughHandlerContext.finallyHandler (http://localhost:51275/__cypress/runner/cypress_runner.js:4042:23)
+                    at PassThroughHandlerContext.tryCatcher (http://localhost:51275/__cypress/runner/cypress_runner.js:1777:23)
+                    at Promise._settlePromiseFromHandler (http://localhost:51275/__cypress/runner/cypress_runner.js:1489:31)
+                    at Promise._settlePromise (http://localhost:51275/__cypress/runner/cypress_runner.js:1546:18)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

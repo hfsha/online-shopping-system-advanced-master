@@ -1,0 +1,67 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1744953235808' stop='1744953271497'>
+    <name>Admin Login Functionality - Online Shopping System</name>
+    <title>Admin Login Functionality - Online Shopping System</title>
+    <test-cases>
+        <test-case start='1744953235808' status='failed' stop='1744953252649'>
+            <name>should log in successfully with valid admin credentials</name>
+            <title>should log in successfully with valid admin credentials</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timed out retrying after 4000ms: expected 'http://localhost/online-shopping-system-advanced-master/online-shopping-system-advanced-master/admin/admin/' to include 'index.php'</message>
+                <stack-trace>AssertionError: Timed out retrying after 4000ms: expected 'http://localhost/online-shopping-system-advanced-master/online-shopping-system-advanced-master/admin/admin/' to include 'index.php'
+                    at Context.eval (webpack:///./cypress/e2e/login.cy.js:26:13)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1744953252955' status='failed' stop='1744953258946'>
+            <name>should display an error for invalid admin credentials</name>
+            <title>should display an error for invalid admin credentials</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timed out retrying after 4000ms: expected '&lt;h4#e_msg>' to contain text 'Invalid', but the text was '  \n  \t  \t  Wrong username/password combination\n  \t  \n'</message>
+                <stack-trace>AssertionError: Timed out retrying after 4000ms: expected '&lt;h4#e_msg>' to contain text 'Invalid', but the text was '  \n  \t  \t  Wrong username/password combination\n  \t  \n'
+                    at Context.eval (webpack:///./cypress/e2e/login.cy.js:45:7)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1744953258990' status='failed' stop='1744953263820'>
+            <name>should not allow login with empty fields</name>
+            <title>should not allow login with empty fields</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timed out retrying after 4000ms: expected '&lt;h4#e_msg>' to contain text 'Invalid', but the text was '  \n  \t  \t  Username is required\n  \t  \t  Password is required\n  \t  \n'</message>
+                <stack-trace>AssertionError: Timed out retrying after 4000ms: expected '&lt;h4#e_msg>' to contain text 'Invalid', but the text was '  \n  \t  \t  Username is required\n  \t  \t  Password is required\n  \t  \n'
+                    at Context.eval (webpack:///./cypress/e2e/login.cy.js:56:7)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1744953263912' status='failed' stop='1744953270043'>
+            <name>should not log in with SQL injection in inputs</name>
+            <title>should not log in with SQL injection in inputs</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timed out retrying after 4000ms: expected '&lt;h4#e_msg>' to contain text 'Invalid', but the text was '  \n  \t  \t  Wrong username/password combination\n  \t  \n'</message>
+                <stack-trace>AssertionError: Timed out retrying after 4000ms: expected '&lt;h4#e_msg>' to contain text 'Invalid', but the text was '  \n  \t  \t  Wrong username/password combination\n  \t  \n'
+                    at Context.eval (webpack:///./cypress/e2e/login.cy.js:75:7)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1744953270113' status='passed' stop='1744953271497'>
+            <name>should trim inputs and reject login if credentials are incorrect</name>
+            <title>should trim inputs and reject login if credentials are incorrect</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

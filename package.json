@@ -1,0 +1,21 @@
+{
+  "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.41.0",
+    "allure-commandline": "^2.33.0",
+    "cypress": "^14.3.1",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-html-reporter": "^11.0.0",
+    "mocha-allure-reporter": "^1.4.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.2.0"
+  },
+  "dependencies": {
+    "cypress-plugin-steps": "^1.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "browser:chrome": "npx cypress run --browser=chrome --headed --spec cypress/e2e/advanced-examples/actions.cy.js --reporter mocha-allure-reporter",
+    "report:allure": "allure generate allure-results --clean -o allure-report && allure open allure-report"
+  }
+}
