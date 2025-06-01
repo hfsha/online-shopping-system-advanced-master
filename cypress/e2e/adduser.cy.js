@@ -206,4 +206,174 @@ describe('Add User Form - Field Validation', () => {
     cy.get('button#btn_save').click();
     cy.get('.alert-danger').should('be.visible').and('contain.text', 'Country is invalid');
   });
+
+  // SQL INJECTION TESTS
+  it('should block SQL injection attempts in first name', () => {
+    cy.get('#first_name').clear().type("' OR '1'='1");
+    cy.get('#last_name').clear().type('ValidLast');
+    cy.get('#email').clear().type(`valid+${Date.now()}@mail.com`);
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#phone').clear().type('0123456789');
+    cy.get('#city').clear().type('ValidCity');
+    cy.get('#country').clear().type('ValidCountry');
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
+
+  it('should block SQL injection attempts in last name', () => {
+    cy.get('#first_name').clear().type('ValidName');
+    cy.get('#last_name').clear().type("' OR '1'='1");
+    cy.get('#email').clear().type(`valid+${Date.now()}@mail.com`);
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#phone').clear().type('0123456789');
+    cy.get('#city').clear().type('ValidCity');
+    cy.get('#country').clear().type('ValidCountry');
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
+
+  it('should block SQL injection attempts in email', () => {
+    cy.get('#first_name').clear().type('ValidName');
+    cy.get('#last_name').clear().type('ValidLast');
+    cy.get('#email').clear().type("' OR '1'='1");
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#phone').clear().type('0123456789');
+    cy.get('#city').clear().type('ValidCity');
+    cy.get('#country').clear().type('ValidCountry');
+    cy.get('button#btn_save').click();
+    cy.get('#email:invalid').should('exist');
+  });
+
+  it('should block SQL injection attempts in password', () => {
+    cy.get('#first_name').clear().type('ValidName');
+    cy.get('#last_name').clear().type('ValidLast');
+    cy.get('#email').clear().type(`valid+${Date.now()}@mail.com`);
+    cy.get('#password').clear().type("' OR '1'='1");
+    cy.get('#phone').clear().type('0123456789');
+    cy.get('#city').clear().type('ValidCity');
+    cy.get('#country').clear().type('ValidCountry');
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
+
+  it('should block SQL injection attempts in phone', () => {
+    cy.get('#first_name').clear().type('ValidName');
+    cy.get('#last_name').clear().type('ValidLast');
+    cy.get('#email').clear().type(`valid+${Date.now()}@mail.com`);
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#phone').clear().type("' OR '1'='1");
+    cy.get('#city').clear().type('ValidCity');
+    cy.get('#country').clear().type('ValidCountry');
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
+
+  it('should block SQL injection attempts in city', () => {
+    cy.get('#first_name').clear().type('ValidName');
+    cy.get('#last_name').clear().type('ValidLast');
+    cy.get('#email').clear().type(`valid+${Date.now()}@mail.com`);
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#phone').clear().type('0123456789');
+    cy.get('#city').clear().type("' OR '1'='1");
+    cy.get('#country').clear().type('ValidCountry');
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
+
+  it('should block SQL injection attempts in country', () => {
+    cy.get('#first_name').clear().type('ValidName');
+    cy.get('#last_name').clear().type('ValidLast');
+    cy.get('#email').clear().type(`valid+${Date.now()}@mail.com`);
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#phone').clear().type('0123456789');
+    cy.get('#city').clear().type('ValidCity');
+    cy.get('#country').clear().type("' OR '1'='1");
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
+
+  // TRIMMED INPUT TESTS
+  it('should reject first name with surrounding whitespaces if not trimmed', () => {
+    cy.get('#first_name').clear().type('  ValidName  ');
+    cy.get('#last_name').clear().type('ValidLast');
+    cy.get('#email').clear().type(`valid+${Date.now()}@mail.com`);
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#phone').clear().type('0123456789');
+    cy.get('#city').clear().type('ValidCity');
+    cy.get('#country').clear().type('ValidCountry');
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
+
+  it('should reject last name with surrounding whitespaces if not trimmed', () => {
+    cy.get('#first_name').clear().type('ValidName');
+    cy.get('#last_name').clear().type('  ValidLast  ');
+    cy.get('#email').clear().type(`valid+${Date.now()}@mail.com`);
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#phone').clear().type('0123456789');
+    cy.get('#city').clear().type('ValidCity');
+    cy.get('#country').clear().type('ValidCountry');
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
+
+  it('should reject email with surrounding whitespaces if not trimmed', () => {
+    cy.get('#first_name').clear().type('ValidName');
+    cy.get('#last_name').clear().type('ValidLast');
+    cy.get('#email').clear().type(`  valid+${Date.now()}@mail.com  `);
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#phone').clear().type('0123456789');
+    cy.get('#city').clear().type('ValidCity');
+    cy.get('#country').clear().type('ValidCountry');
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
+
+  it('should reject password with surrounding whitespaces if not trimmed', () => {
+    cy.get('#first_name').clear().type('ValidName');
+    cy.get('#last_name').clear().type('ValidLast');
+    cy.get('#email').clear().type(`valid+${Date.now()}@mail.com`);
+    cy.get('#password').clear().type('  StrongPass123!  ');
+    cy.get('#phone').clear().type('0123456789');
+    cy.get('#city').clear().type('ValidCity');
+    cy.get('#country').clear().type('ValidCountry');
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
+
+  it('should reject phone with surrounding whitespaces if not trimmed', () => {
+    cy.get('#first_name').clear().type('ValidName');
+    cy.get('#last_name').clear().type('ValidLast');
+    cy.get('#email').clear().type(`valid+${Date.now()}@mail.com`);
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#phone').clear().type('  0123456789  ');
+    cy.get('#city').clear().type('ValidCity');
+    cy.get('#country').clear().type('ValidCountry');
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
+
+  it('should reject city with surrounding whitespaces if not trimmed', () => {
+    cy.get('#first_name').clear().type('ValidName');
+    cy.get('#last_name').clear().type('ValidLast');
+    cy.get('#email').clear().type(`valid+${Date.now()}@mail.com`);
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#phone').clear().type('0123456789');
+    cy.get('#city').clear().type('  ValidCity  ');
+    cy.get('#country').clear().type('ValidCountry');
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
+
+  it('should reject country with surrounding whitespaces if not trimmed', () => {
+    cy.get('#first_name').clear().type('ValidName');
+    cy.get('#last_name').clear().type('ValidLast');
+    cy.get('#email').clear().type(`valid+${Date.now()}@mail.com`);
+    cy.get('#password').clear().type('StrongPass123!');
+    cy.get('#phone').clear().type('0123456789');
+    cy.get('#city').clear().type('ValidCity');
+    cy.get('#country').clear().type('  ValidCountry  ');
+    cy.get('button#btn_save').click();
+    cy.get('body').should('contain.text', 'Query 1 is inncorrect........');
+  });
 });
